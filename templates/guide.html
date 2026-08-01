@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Recycling Guide - EcoSort AI{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <span class="section-eyebrow justify-content-center">Reference Library</span>
+    <h1 class="section-title">Recycling Guide</h1>
+    <p class="section-sub mx-auto">Six waste categories, their correct bins, and how to dispose of them the right way.</p>
+  </div>
+</section>
+
+<section class="pb-3">
+  <div class="container">
+    <div class="tip-banner mb-5" data-aos="fade-up">
+      <i class="fa-solid fa-lightbulb"></i>
+      <div>
+        <strong>Daily Recycling Tip</strong>
+        <p class="mb-0 text-muted">{{ tip }}</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      {% for item in guide_data %}
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="guide-card">
+          <div class="guide-card-top" style="background: linear-gradient(135deg, {{ item.color }}, {{ item.color }}cc);">
+            <div class="icon-circle"><i class="fa-solid {{ item.icon }}"></i></div>
+            <div>
+              <h5 class="mb-0 text-white">{{ item.category }}</h5>
+              <small class="text-white-50">Category</small>
+            </div>
+          </div>
+          <div class="guide-card-body">
+            <p class="text-muted small mb-2 fw-semibold">EXAMPLES</p>
+            <div class="mb-2">
+              {% for ex in item.examples %}
+              <span class="example-chip">{{ ex }}</span>
+              {% endfor %}
+            </div>
+            <div class="bin-tag">
+              <span class="bin-dot" style="background: {{ item.color }};"></span> {{ item.bin }}
+            </div>
+            <p class="text-muted small mb-0"><i class="fa-solid fa-route me-1"></i> {{ item.disposal }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="detect-panel text-center" data-aos="fade-up">
+      <span class="section-eyebrow justify-content-center">Not sure what you have?</span>
+      <h2 class="section-title">Let EcoSort AI identify it for you</h2>
+      <a href="{{ url_for('detect') }}" class="btn-eco-primary"><i class="fa-solid fa-magnifying-glass"></i> Go to Waste Detection</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}EcoSort AI - Smart Waste Segregation{% endblock %}</title>
+<meta name="description" content="EcoSort AI - Smart Waste Segregation Assistant. Identify waste, learn correct disposal, and earn EcoScore rewards.">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<!-- AOS Animation -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-expand-lg eco-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand eco-brand" href="{{ url_for('home') }}">
+      <span class="brand-mark"><i class="fa-solid fa-leaf"></i></span>
+      EcoSort <span class="brand-ai">AI</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link {% if request.path=='/' %}active{% endif %}" href="{{ url_for('home') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path=='/detect' %}active{% endif %}" href="{{ url_for('detect') }}">Detect Waste</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path=='/guide' %}active{% endif %}" href="{{ url_for('guide') }}">Recycling Guide</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path=='/ecoscore' %}active{% endif %}" href="{{ url_for('ecoscore') }}">EcoScore</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path=='/dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path=='/about' %}active{% endif %}" href="{{ url_for('about') }}">About</a></li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn-dark-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== PAGE CONTENT ===================== -->
+{% block content %}{% endblock %}
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="eco-footer">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4">
+        <a class="eco-brand footer-brand" href="{{ url_for('home') }}">
+          <span class="brand-mark"><i class="fa-solid fa-leaf"></i></span> EcoSort <span class="brand-ai">AI</span>
+        </a>
+        <p class="footer-tagline">Building a cleaner and greener future through smart waste classification, one item at a time.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6 class="footer-heading">Explore</h6>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('detect') }}">Detect Waste</a></li>
+          <li><a href="{{ url_for('guide') }}">Recycling Guide</a></li>
+          <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6 class="footer-heading">Project</h6>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('ecoscore') }}">EcoScore</a></li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="footer-heading">HCL Jigsaw Innovation Competition</h6>
+        <p class="footer-note">A prototype built for Grades 6&ndash;9, demonstrating how AI can make waste segregation simple, engaging, and rewarding.</p>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>&copy; 2026 EcoSort AI &mdash; Made with <i class="fa-solid fa-heart"></i> for a greener planet.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top button -->
+<button id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

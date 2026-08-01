@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}EcoScore - EcoSort AI{% endblock %}
+
+{% block content %}
+
+<section class="page-header pb-3">
+  <div class="container">
+    <span class="section-eyebrow justify-content-center">Gamified Recycling</span>
+    <h1 class="section-title">EcoScore</h1>
+    <p class="section-sub mx-auto">Earn points every time you identify and correctly segregate a waste item.</p>
+  </div>
+</section>
+
+<section class="pb-5">
+  <div class="container">
+
+    <div class="mb-4 text-center" data-aos="fade-up">
+      <span class="section-eyebrow justify-content-center">Reward System</span>
+      <h2 class="section-title">Points Per Category</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      {% for p in points_table %}
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="score-point-card">
+          <div class="score-point-icon" style="background: linear-gradient(135deg, {{ p.color }}, {{ p.color }}cc);">
+            <i class="fa-solid {{ p.icon }}"></i>
+          </div>
+          <h6 class="score-point-name">{{ p.category }}</h6>
+          <span class="score-point-value">+{{ p.points }} pts</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="tip-banner mt-5" data-aos="fade-up">
+      <i class="fa-solid fa-leaf"></i>
+      <div>
+        <p class="mb-0 text-muted">Segregate waste correctly to earn EcoScore points and help protect the environment.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block title %}EcoSort AI - Smart Waste Segregation Assistant{% endblock %}
+
+{% block content %}
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6" data-aos="fade-up">
+        <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> HCL Jigsaw Innovation Competition</span>
+        <h1 class="hero-title">🌱 EcoSort <span class="accent">AI</span></h1>
+        <p class="hero-subtitle">Building a cleaner and greener future through smart waste classification. Upload an item, get an instant sorting guide, and earn EcoScore rewards for every correct disposal.</p>
+        <div class="hero-cta">
+          <a href="{{ url_for('detect') }}" class="btn-eco-primary"><i class="fa-solid fa-magnifying-glass"></i> Identify Waste</a>
+          <a href="{{ url_for('dashboard') }}" class="btn-eco-outline"><i class="fa-solid fa-chart-line"></i> View Dashboard</a>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="150">
+        <div class="sorting-stream">
+          <div class="bin-ring"></div>
+          <div class="stream-core"><i class="fa-solid fa-recycle"></i></div>
+          <div class="stream-item i1"><i class="fa-solid fa-bottle-water" style="color:#2f6fed"></i></div>
+          <div class="stream-item i2"><i class="fa-solid fa-newspaper" style="color:#2e9e5b"></i></div>
+          <div class="stream-item i3"><i class="fa-solid fa-wine-bottle" style="color:#16a596"></i></div>
+          <div class="stream-item i4"><i class="fa-solid fa-jar" style="color:#6b7280"></i></div>
+          <div class="stream-item i5"><i class="fa-solid fa-leaf" style="color:#8a5a2b"></i></div>
+          <div class="stream-item i6"><i class="fa-solid fa-laptop" style="color:#d63b3b"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EOC QUOTE STRIP ===================== -->
+<div class="container">
+  <div class="tip-banner" data-aos="fade-up">
+    <i class="fa-solid fa-quote-left"></i>
+    <div>
+      <strong>Today's Eco Quote</strong>
+      <p class="mb-0 text-muted">"{{ quote }}"</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="py-5 mt-4">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-eyebrow">What EcoSort AI Does</span>
+      <h2 class="section-title">Everything you need to sort smarter</h2>
+      <p class="section-sub mx-auto">Four simple tools that turn waste segregation from a chore into a habit worth keeping.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="eco-card">
+          <div class="eco-card-icon"><i class="fa-solid fa-brain"></i></div>
+          <h5>AI Inspired Waste Detection</h5>
+          <p>Upload a photo or pick a category to instantly identify how an item should be sorted.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="eco-card">
+          <div class="eco-card-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h5>Smart Recycling Guide</h5>
+          <p>A visual reference for every waste category, its correct bin colour, and disposal method.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="eco-card">
+          <div class="eco-card-icon"><i class="fa-solid fa-chart-pie"></i></div>
+          <h5>Analytics Dashboard</h5>
+          <p>Track waste trends, recycling rates, and environmental impact with live charts.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="eco-card">
+          <div class="eco-card-icon"><i class="fa-solid fa-trophy"></i></div>
+          <h5>EcoScore Rewards</h5>
+          <p>Earn points and badges every time you sort waste correctly, and level up your eco status.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats-band">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-lg-3" data-aos="zoom-in">
+        <div class="stat-item">
+          <div class="stat-number" data-counter="1250">0</div>
+          <div class="stat-label">Images Processed</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+        <div class="stat-item">
+          <div class="stat-number" data-counter="6">0</div>
+          <div class="stat-label">Waste Categories</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+        <div class="stat-item">
+          <div class="stat-number" data-counter="82" data-suffix="%">0%</div>
+          <div class="stat-label">Recycling Success Rate</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+        <div class="stat-item">
+          <div class="stat-number" data-counter="245" data-suffix=" kg">0 kg</div>
+          <div class="stat-label">Environmental Impact (CO₂ Saved)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="py-5">
+  <div class="container">
+    <div class="detect-panel text-center" data-aos="fade-up">
+      <span class="section-eyebrow justify-content-center">Ready to try it?</span>
+      <h2 class="section-title">Start sorting in under 10 seconds</h2>
+      <p class="section-sub mx-auto mb-4">No sign-up needed. Just pick a waste type and let EcoSort AI show you the correct bin.</p>
+      <a href="{{ url_for('detect') }}" class="btn-eco-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Try Waste Detection</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="team-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-eyebrow justify-content-center">Meet the Team</span>
+      <h2 class="section-title">The Minds Behind EcoSort AI</h2>
+      <p class="section-sub mx-auto">Class {{ team_class }} students who dreamed up and built this project.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      {% for member in team_members %}
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="team-card">
+          <div class="team-avatar"><i class="fa-solid {{ member.icon }}"></i></div>
+          <div class="team-name">{{ member.name }}</div>
+          <span class="team-role-tag">Student Innovator</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="team-credit-bar" data-aos="fade-up">
+      <p>Developed by Students of <span class="school-name">{{ school_name }}</span></p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}About - EcoSort AI{% endblock %}
+
+{% block content %}
+
+<section class="page-header pb-3">
+  <div class="container">
+    <span class="section-eyebrow justify-content-center">Our Mission</span>
+    <h1 class="section-title">About EcoSort AI</h1>
+    <p class="section-sub mx-auto">A student-built prototype for the HCL Jigsaw Innovation Competition, designed to make waste segregation simple, engaging, and rewarding.</p>
+  </div>
+</section>
+
+<section class="pb-5">
+  <div class="container">
+
+    <div class="row g-4 mb-4">
+      <div class="col-lg-6" data-aos="fade-up">
+        <div class="about-block">
+          <div class="eco-card-icon mb-3"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <h3 class="mb-3">The Problem</h3>
+          <p class="text-muted">Most households and schools mix recyclable, organic, and hazardous waste together, making recycling inefficient and increasing landfill pressure. Many people simply don't know which bin an item belongs in, or why it matters.</p>
+          <p class="text-muted mb-0">Incorrect segregation contaminates entire batches of recyclables, meaning materials that could have been reused end up in landfills anyway.</p>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="about-block">
+          <div class="eco-card-icon mb-3"><i class="fa-solid fa-lightbulb"></i></div>
+          <h3 class="mb-3">Our Solution</h3>
+          <p class="text-muted">EcoSort AI simulates an AI-powered waste classifier that instantly tells users the correct bin, disposal method, and an interesting environmental fact for any item — turning a confusing decision into a 10-second lookup.</p>
+          <p class="text-muted mb-0">A built-in EcoScore system gamifies the process, rewarding users with points and badges for consistently sorting waste correctly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4" data-aos="fade-up">
+        <div class="about-block h-100">
+          <div class="eco-card-icon mb-3"><i class="fa-solid fa-bullseye"></i></div>
+          <h5 class="mb-3">Objectives</h5>
+          <ul class="text-muted ps-3 mb-0">
+            <li>Simplify waste identification for all ages</li>
+            <li>Encourage consistent, correct recycling habits</li>
+            <li>Make sustainability engaging through gamification</li>
+            <li>Provide a scalable base for real AI integration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="about-block h-100">
+          <div class="eco-card-icon mb-3"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h5 class="mb-3">Benefits</h5>
+          <ul class="text-muted ps-3 mb-0">
+            <li>Reduces landfill contamination</li>
+            <li>Builds eco-conscious habits early</li>
+            <li>Saves energy, water, and raw materials</li>
+            <li>Makes classrooms and homes greener</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="about-block h-100">
+          <div class="eco-card-icon mb-3"><i class="fa-solid fa-flask-vial"></i></div>
+          <h5 class="mb-3">Prototype Note</h5>
+          <p class="text-muted mb-0">This version simulates AI predictions using a predefined lookup table instead of a trained model, so it runs instantly on any machine with no GPU or dataset required — while keeping the same architecture a real model would use.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4" data-aos="fade-up">
+      <span class="section-eyebrow">What's Next</span>
+      <h2 class="section-title">Future Scope</h2>
+      <p class="section-sub">Planned upgrades that would turn this prototype into a real-world deployed system.</p>
+    </div>
+    <div class="row g-3">
+      {% for f in future_features %}
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 60 }}">
+        <div class="future-chip">
+          <i class="fa-solid {{ f.icon }}"></i>
+          <span class="fw-semibold small">{{ f.title }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="team-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-eyebrow justify-content-center">Team Details</span>
+      <h2 class="section-title">Meet the Team</h2>
+      <p class="section-sub mx-auto">{{ project_name }} was designed and built by Class {{ team_class }} students of {{ school_name }}.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      {% for member in team_members %}
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="team-card">
+          <div class="team-avatar"><i class="fa-solid {{ member.icon }}"></i></div>
+          <div class="team-name">{{ member.name }}</div>
+          <span class="team-role-tag">Student Innovator</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="team-credit-bar" data-aos="fade-up">
+      <p>Developed by Students of <span class="school-name">{{ school_name }}</span></p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

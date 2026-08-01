@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - EcoSort AI{% endblock %}
+
+{% block content %}
+
+<section class="page-header pb-3">
+  <div class="container">
+    <span class="section-eyebrow justify-content-center">Live Analytics</span>
+    <h1 class="section-title">Dashboard</h1>
+    <p class="section-sub mx-auto">Real, live numbers from this app — updated instantly every time someone visits a page or identifies a waste item.</p>
+  </div>
+</section>
+
+<section class="pb-5">
+  <div class="container">
+
+    <!-- 1. Statistics Cards (real live counters) -->
+    <div class="row g-4 mb-5 justify-content-center">
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up">
+        <div class="dash-card">
+          <div class="dash-icon" style="background: var(--sun);"><i class="fa-solid fa-signal"></i></div>
+          <div class="dash-value">{{ "%02d"|format(stats.total_visits) }}</div>
+          <div class="dash-label">Total Visits (Traffic)</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="dash-card">
+          <div class="dash-icon" style="background: var(--forest);"><i class="fa-solid fa-images"></i></div>
+          <div class="dash-value">{{ "%02d"|format(stats.images_uploaded) }}</div>
+          <div class="dash-label">Images Uploaded</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="dash-card">
+          <div class="dash-icon" style="background: var(--leaf);"><i class="fa-solid fa-recycle"></i></div>
+          <div class="dash-value">{{ "%02d"|format(stats.waste_identified) }}</div>
+          <div class="dash-label">Waste Identified</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Waste Categories (real live counts) -->
+    <div class="mb-4" data-aos="fade-up">
+      <span class="section-eyebrow">Category Breakdown</span>
+      <h2 class="section-title">Waste Categories</h2>
+      <p class="section-sub">Live count of items identified in each waste category. Try the <a href="{{ url_for('detect') }}">Detect Waste</a> page — this updates instantly.</p>
+    </div>
+    <div class="row g-4">
+      {% for c in categories %}
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 60 }}">
+        <div class="category-count-card">
+          <div class="category-count-top">
+            <div class="category-count-icon" style="background: {{ c.color }};">
+              <i class="fa-solid {{ c.icon }}"></i>
+            </div>
+            <div>
+              <h6 class="mb-0">{{ c.category }}</h6>
+              <span class="text-mono category-count-num">{{ "%02d"|format(c.count) }}</span>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar"
+                 style="width: {{ (c.count / max_count * 100) | round(1) }}%; background: {{ c.color }};"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if stats.waste_identified == 0 %}
+    <div class="tip-banner mt-5" data-aos="fade-up">
+      <i class="fa-solid fa-circle-info"></i>
+      <div>
+        <strong>No waste identified yet</strong>
+        <p class="mb-0 text-muted">Head over to the Detect Waste page and identify an item — this dashboard will update in real time.</p>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

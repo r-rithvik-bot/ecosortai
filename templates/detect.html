@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Detect Waste - EcoSort AI{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <span class="section-eyebrow justify-content-center">Smart Detection</span>
+    <h1 class="section-title">Identify Your Waste</h1>
+    <p class="section-sub mx-auto">Upload a photo (for preview) or select a waste category below, then let EcoSort AI show you exactly how to dispose of it.</p>
+  </div>
+</section>
+
+<section class="pb-5">
+  <div class="container">
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="detect-panel">
+          <form id="detectForm">
+
+            <label class="form-label fw-semibold mb-2">Upload Waste Image (optional preview)</label>
+            <div class="upload-zone" id="uploadZone">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <p class="mb-1 fw-semibold">Click or drag an image here</p>
+              <p class="text-muted small mb-0">PNG or JPG — used for preview only in this prototype</p>
+              <img id="previewImg" alt="Preview of uploaded waste image">
+            </div>
+            <input class="d-none" type="file" id="wasteImage" accept="image/*">
+
+            <div class="divider-or">OR CHOOSE A CATEGORY</div>
+
+            <label for="wasteType" class="form-label fw-semibold mb-2">Select Waste Type</label>
+            <select class="form-select form-select-eco mb-4" id="wasteType">
+              <option value="" selected disabled>Choose waste category...</option>
+              <option value="plastic">🥤 Plastic</option>
+              <option value="paper">📄 Paper</option>
+              <option value="glass">🍾 Glass</option>
+              <option value="metal">🥫 Metal</option>
+              <option value="organic">🍃 Organic</option>
+              <option value="ewaste">💻 E-Waste</option>
+            </select>
+
+            <button type="submit" class="btn-eco-primary w-100 justify-content-center" id="identifyBtn">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Identify Waste
+            </button>
+          </form>
+
+          <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner-ring"></div>
+            <p class="text-muted mb-0">EcoSort AI is analysing your waste...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5" data-aos="fade-up" data-aos-delay="150">
+        <div class="result-card" id="resultCard">
+          <div class="result-head" id="resultHead">
+            <div class="icon-badge" id="resultIcon"><i class="fa-solid fa-recycle"></i></div>
+            <div>
+              <h5 class="mb-0 text-white" id="resultLabel">-</h5>
+              <small class="text-white-50" id="resultCategory">-</small>
+            </div>
+          </div>
+          <div class="result-body">
+            <div class="result-row">
+              <span class="label"><i class="fa-solid fa-trash-can me-2"></i>Correct Bin</span>
+              <span class="value" id="valBin">-</span>
+            </div>
+            <div class="result-row">
+              <span class="label"><i class="fa-solid fa-rotate me-2"></i>Recyclable</span>
+              <span class="value" id="valRecyclable">-</span>
+            </div>
+            <div class="result-row">
+              <span class="label"><i class="fa-solid fa-route me-2"></i>Disposal Method</span>
+              <span class="value text-end" id="valDisposal" style="max-width:60%;">-</span>
+            </div>
+            <div class="fact-box">
+              <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+              <span id="resultFact">-</span>
+            </div>
+            <div class="text-center">
+              <span class="points-toast"><i class="fa-solid fa-star"></i> <span id="resultPoints">-</span></span>
+            </div>
+          </div>
+        </div>
+
+        {% if not waste_types %}
+        <div></div>
+        {% endif %}
+
+        <div class="eco-card mt-4 text-center" id="placeholderCard">
+          <div class="eco-card-icon mx-auto"><i class="fa-solid fa-flask"></i></div>
+          <h5>Your Result Appears Here</h5>
+          <p>Pick a waste type on the left and click "Identify Waste" to see the sorting result, bin colour, and an eco fact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
